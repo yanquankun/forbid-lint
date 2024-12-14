@@ -1,0 +1,50 @@
+{
+  "name": "forbid-lint",
+  "version": "1.0.0",
+  "description": "一个用于前端工程中禁止修改lint文件的插件",
+  "main": "index.js",
+  "bin": {
+    "forbid-lint": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
+    "build": "tsc",
+    "test": "tsc -w && nodemon --watch src --ext ts --exec sh test-install.sh"
+  },
+  "files": [
+    "dist",
+    "README",
+    "CHANGELOG",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanquankun/forbid-lint"
+  },
+  "bugs": {
+    "url": "https://github.com/yanquankun/forbid-lint/issues"
+  },
+  "homepage": "https://github.com/yanquankun/forbid-lint/blob/master/README.md",
+  "author": "yanquankun",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "lint",
+    "fe",
+    "forbid"
+  ],
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}

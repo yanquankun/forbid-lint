@@ -1,0 +1,40 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    devDependencies:
+      forbid-lint:
+        specifier: file:..
+        version: file:..
+      loadsh:
+        specifier: ^0.0.4
+        version: 0.0.4
+
+packages:
+
+  forbid-lint@file:..:
+    resolution: {directory: .., type: directory}
+    engines: {node: '>= 14.0.0'}
+    hasBin: true
+
+  loadsh@0.0.4:
+    resolution: {integrity: sha512-U+wLL8InpfRalWrr+0SuhWgGt10M4OyAk6G8xCYo2rwpiHtxZkWiFpjei0vO463ghW8LPCdhqQxXlMy2qicAEw==}
+    deprecated: This is a typosquat on the popular Lodash package. This is not maintained nor is the original Lodash package.
+
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+snapshots:
+
+  forbid-lint@file:..:
+    dependencies:
+      tslib: 2.8.1
+
+  loadsh@0.0.4: {}
+
+  tslib@2.8.1: {}
