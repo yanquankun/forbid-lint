@@ -1,9 +1,9 @@
 import { lib } from "./lib/lib";
 
-function test() {
+/** test */
+const test = () => {
   console.log(lib);
-}
-
+};
 console.log("success");
 
 export { test };
