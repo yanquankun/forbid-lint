@@ -1,9 +1,4 @@
-import { lib } from "./lib/lib";
+import check from "./lib/check";
 
-/** test */
-const test = () => {
-  console.log(lib);
-};
-console.log("success");
 
-export { test };
+check();
