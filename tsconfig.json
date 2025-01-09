@@ -7,7 +7,7 @@
     "target": "ESNext",
     "module": "CommonJS",
     "declaration": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "dist",
     "importHelpers": true,
     "strict": true,
@@ -19,6 +19,6 @@
     "removeComments": true,
     "typeRoots": ["./node_modules/@types", "./src/**/*.d.ts"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/util/log.ts"],
   "exclude": ["node_modules", "dist"]
 }
