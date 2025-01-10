@@ -5,7 +5,7 @@
     "incremental": true,
     "allowJs": true,
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "NodeNext", // 由于项目中某些dep是esm，所以不要使用commonjs，否则无法解析esm模块
     "declaration": true,
     "sourceMap": false,
     "outDir": "dist",
@@ -19,6 +19,12 @@
     "removeComments": true,
     "typeRoots": ["./node_modules/@types", "./src/**/*.d.ts"]
   },
-  "include": ["src/**/*.ts", "src/util/log.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/util/log.cts",
+    "src/util/dir.ts",
+    "src/util/dir.mjs",
+    "src/index.mts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

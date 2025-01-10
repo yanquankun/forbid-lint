@@ -2,6 +2,7 @@ import program from "commander";
 import fs from "fs";
 import path from "path";
 import log from "../util/log";
+import dir from "../util/dir";
 
 export default function () {
   const pkg = fs.readFileSync(path.join(__dirname, "../../package.json"), {
@@ -25,7 +26,7 @@ export default function () {
     .option("-f, --force", "强制覆盖已存在的.forbidrc.json文件")
     .action(async (name) => {
       console.log(name);
-      console.log(process.cwd());
+      console.log(await dir.getProjectRoot());
     });
 
   program.on("command:*", ([cmd]) => {
