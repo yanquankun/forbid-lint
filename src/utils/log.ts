@@ -2,7 +2,8 @@ import readline from "readline";
 import chalk from "chalk";
 import stripAnsi from "strip-ansi";
 
-const chalkTag = (msg: string) => chalk.bgBlackBright.white.dim(` ${msg} `);
+const chalkTag = (msg: string) =>
+  chalk.bgBlackBright.white.dim(` ${msg.toUpperCase()} `);
 
 const format = (label: string, msg: string) => {
   return msg
@@ -17,20 +18,20 @@ const format = (label: string, msg: string) => {
 
 export default {
   chalk,
-  log: (msg = "", tag = null) => {
+  log: (msg = "", tag: string = "") => {
     tag ? console.log(format(chalkTag(tag), msg)) : console.log(msg);
   },
-  info: (msg: string, tag = null) => {
+  info: (msg: string, tag: string = "") => {
     console.log(
       format(chalk.bgBlue.black(" INFO ") + (tag ? chalkTag(tag) : ""), msg)
     );
   },
-  done: (msg: string, tag = null) => {
+  done: (msg: string, tag: string = "") => {
     console.log(
       format(chalk.bgGreen.black(" DONE ") + (tag ? chalkTag(tag) : ""), msg)
     );
   },
-  warn: (msg: string, tag = null) => {
+  warn: (msg: string, tag: string = "") => {
     console.warn(
       format(
         chalk.bgYellow.black(" WARN ") + (tag ? chalkTag(tag) : ""),
@@ -38,7 +39,7 @@ export default {
       )
     );
   },
-  error: (msg: string | Error, tag = null) => {
+  error: (msg: string | Error, tag: string = "") => {
     console.error(
       format(
         chalk.bgRed(" ERROR ") + (tag ? chalkTag(tag) : ""),

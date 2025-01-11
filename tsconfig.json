@@ -19,12 +19,6 @@
     "removeComments": true,
     "typeRoots": ["./node_modules/@types", "./src/**/*.d.ts"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/util/log.cts",
-    "src/util/dir.ts",
-    "src/util/dir.mjs",
-    "src/index.mts"
-  ],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

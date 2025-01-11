@@ -1,8 +1,8 @@
 import program from "commander";
 import fs from "fs";
 import path from "path";
-import log from "../util/log";
-import dir from "../util/dir";
+import log from "../utils/log";
+import dir from "../utils/dir";
 
 export default function () {
   const pkg = fs.readFileSync(path.join(__dirname, "../../package.json"), {
