@@ -1,5 +1,10 @@
 import gulp from "gulp";
 import gulpCopy from "gulp-copy";
+import terser from "gulp-terser";
+
+gulp.task("minify", () => {
+  return gulp.src("dist/**/*.js").pipe(terser()).pipe(gulp.dest("dist/"));
+});
 
 gulp.task("copy-assets", () => {
   return (
@@ -10,4 +15,4 @@ gulp.task("copy-assets", () => {
   );
 });
 
-gulp.task("default", gulp.series("copy-assets"));
+gulp.task("default", gulp.series("minify", "copy-assets"));
