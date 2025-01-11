@@ -25,8 +25,12 @@ export default function () {
     )
     .option("-f, --force", "强制覆盖已存在的.forbidrc.json文件")
     .action(async (name) => {
-      console.log(name);
       console.log(await dir.getProjectRoot());
+      const { status, reason, data } = await dir.getTemplatePath();
+
+      if (status) {
+        console.log(data);
+      }
     });
 
   program.on("command:*", ([cmd]) => {

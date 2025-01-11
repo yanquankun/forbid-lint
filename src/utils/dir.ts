@@ -1,4 +1,5 @@
 import path from "path";
+import helper from "./helper";
 
 /**
  * @description 获取项目根目录
@@ -19,6 +20,24 @@ async function getProjectRoot(target: string = "package.json") {
   }
 }
 
+/**
+ * @description find forbid-lint project template path
+ */
+function getTemplatePath(): ReturnType<typeof helper.resultPromiseWrap> {
+  return helper.resultPromiseWrap((resolve) => {
+    try {
+      resolve({
+        reason: null,
+        status: true,
+        data: path.resolve(__dirname, "../template"),
+      });
+    } catch (error) {
+      resolve({ reason: JSON.stringify(error), status: false, data: null });
+    }
+  });
+}
+
 export default {
   getProjectRoot,
+  getTemplatePath,
 };

@@ -11,6 +11,7 @@
     "outDir": "dist",
     "importHelpers": true,
     "strict": true,
+    "lib": ["esnext.promise"],
     /** commonjs support import */
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
