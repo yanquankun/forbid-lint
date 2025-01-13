@@ -15,7 +15,6 @@ const huskyPrompt = () => {
         type: "confirm",
         name: "installHusky",
         message: "检测到项目未安装husky，是否安装 husky?",
-        // hint: '按 "y" 或回车 安装 husky',
         initial: true,
       },
     ])
@@ -25,7 +24,7 @@ const huskyPrompt = () => {
     .catch((e) => log.done("退出进程，结束初始化，欢迎再次使用", "exit"));
 };
 
-export const initTask = async ({ force: Boolean }: IInitTaskOptions) => {
+export const initTask = async ({ force = false }: IInitTaskOptions) => {
   spinner.start("正在检测项目是否安装 husky...");
   const isInstallHusky = await dirHelper.getModuleIsInstalled("husky");
   if (!isInstallHusky) {
