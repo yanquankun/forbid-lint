@@ -10,9 +10,16 @@ const createSpinner = (): Ora => {
 
       if (typeof originalProperty === "function") {
         return <T>(...args: T[]) => {
-          // start 前先清空
           if (prop === "start") {
             target.clear();
+            target.stop();
+          }
+
+          if (prop === "stop") {
+            target.clear();
+          }
+
+          if (prop === "succeed" || prop === "fail") {
             target.stop();
           }
 

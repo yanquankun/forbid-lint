@@ -46,10 +46,10 @@ export default {
         chalk.red(msg)
       )
     );
-    if (msg instanceof Error) {
-      console.error(msg.stack);
-      console.log("error", tag, msg.stack);
-    } else console.log("error", tag, msg);
+    // if (msg instanceof Error) {
+    //   console.error(msg.stack);
+    //   console.log("error", tag, msg.stack);
+    // } else console.log("error", tag, msg);
   },
   clearConsole: (title: string) => {
     if (process.stdout.isTTY) {
