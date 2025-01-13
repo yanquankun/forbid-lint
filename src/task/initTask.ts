@@ -7,6 +7,10 @@ interface IInitTaskOptions {
   force: boolean;
 }
 
+interface IPromptThenable {
+  (value: unknown): void | PromiseLike<void>;
+}
+
 const huskyPrompt = () => {
   spinner.stop();
   enquirer
@@ -18,10 +22,10 @@ const huskyPrompt = () => {
         initial: true,
       },
     ])
-    .then((installHusky) => {
+    .then((({ installHusky }) => {
       console.log(installHusky);
-    })
-    .catch((e) => log.done("退出进程，结束初始化，欢迎再次使用", "exit"));
+    }) as IPromptThenable)
+    .catch(() => log.done("退出进程，结束初始化，欢迎再次使用", "exit"));
 };
 
 export const initTask = async ({ force = false }: IInitTaskOptions) => {
