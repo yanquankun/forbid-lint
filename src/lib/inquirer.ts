@@ -2,7 +2,7 @@ import program from "commander";
 import fs from "fs";
 import path from "path";
 import log from "../utils/log";
-import dirHelper from "../utils/dir";
+import { initTask } from "../task/initTask";
 
 export default function () {
   const pkg = fs.readFileSync(path.join(__dirname, "../../package.json"), {
@@ -25,14 +25,9 @@ export default function () {
     )
     .option("-f, --force", "强制覆盖已存在的.forbidrc.json文件")
     .action(async (name) => {
-      console.log(await dirHelper.getProjectRoot());
-      const { status, reason, data } = await dirHelper.getTemplatePath();
-
-      if (status) {
-        console.log(data);
-      }
-
-      console.log(await dirHelper.getModuleIsInstalled("forbid-lint"));
+      initTask({
+        force: name.force,
+      });
     });
 
   program.on("command:*", ([cmd]) => {

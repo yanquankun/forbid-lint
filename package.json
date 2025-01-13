@@ -61,8 +61,10 @@
     "commander": "7.1.0",
     "core-js": "^3.40.0",
     "ejs": "^3.1.10",
+    "enquirer": "^2.4.1",
     "find-up": "^7.0.0",
     "fs-extra": "^11.2.0",
+    "ora": "5.3.0",
     "promise.withresolvers": "^1.0.3",
     "strip-ansi": "6",
     "tslib": "^2.8.1"
