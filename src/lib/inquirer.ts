@@ -2,7 +2,7 @@ import program from "commander";
 import fs from "fs";
 import path from "path";
 import log from "../utils/log";
-import dir from "../utils/dir";
+import dirHelper from "../utils/dir";
 
 export default function () {
   const pkg = fs.readFileSync(path.join(__dirname, "../../package.json"), {
@@ -25,8 +25,8 @@ export default function () {
     )
     .option("-f, --force", "强制覆盖已存在的.forbidrc.json文件")
     .action(async (name) => {
-      console.log(await dir.getProjectRoot());
-      const { status, reason, data } = await dir.getTemplatePath();
+      console.log(await dirHelper.getProjectRoot());
+      const { status, reason, data } = await dirHelper.getTemplatePath();
 
       if (status) {
         console.log(data);

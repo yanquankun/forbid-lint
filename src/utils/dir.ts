@@ -37,7 +37,9 @@ function getTemplatePath(): ReturnType<typeof helper.withResultWarp> {
   });
 }
 
-export default {
+const dirHelper = {
   getProjectRoot,
   getTemplatePath,
 };
+
+export default dirHelper;
