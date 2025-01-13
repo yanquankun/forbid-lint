@@ -31,6 +31,8 @@ export default function () {
       if (status) {
         console.log(data);
       }
+
+      console.log(await dirHelper.getModuleIsInstalled("forbid-lint"));
     });
 
   program.on("command:*", ([cmd]) => {

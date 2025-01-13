@@ -2,7 +2,7 @@
   "name": "forbid-lint",
   "version": "1.0.0",
   "description": "一个用于前端工程中禁止修改lint文件的插件",
-  "main": "index.js",
+  "main": "dist/index.js",
   "bin": {
     "forbid-lint": "./dist/index.js"
   },

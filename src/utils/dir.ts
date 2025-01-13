@@ -1,5 +1,6 @@
 import path from "path";
 import helper from "./helper";
+import fs from "fs-extra";
 
 /**
  * @description 获取项目根目录
@@ -37,9 +38,44 @@ function getTemplatePath(): ReturnType<typeof helper.withResultWarp> {
   });
 }
 
+async function isLibraryListedInPackageJson(moduleName: string) {
+  const packageJsonPath = await getProjectRoot();
+
+  if (!packageJsonPath) {
+    return false;
+  }
+
+  const packageJson = JSON.parse(
+    fs.readFileSync(path.join(packageJsonPath!, "package.json"), "utf-8")
+  );
+
+  const allDependencies = [
+    ...Object.keys(packageJson?.dependencies ?? []),
+    ...Object.keys(packageJson?.devDependencies ?? []),
+  ];
+
+  return Boolean(allDependencies.includes(moduleName));
+}
+
+async function getModuleIsInstalled(moduleName: string) {
+  moduleName = moduleName.trim();
+
+  try {
+    // find cjs package has vaild main field
+    require.resolve(moduleName);
+    return true;
+  } catch (error) {
+    // find all deps from package.json
+    const bol = await isLibraryListedInPackageJson(moduleName);
+
+    return bol ?? false;
+  }
+}
+
 const dirHelper = {
   getProjectRoot,
   getTemplatePath,
+  getModuleIsInstalled,
 };
 
 export default dirHelper;
