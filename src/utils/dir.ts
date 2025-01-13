@@ -23,8 +23,8 @@ async function getProjectRoot(target: string = "package.json") {
 /**
  * @description find forbid-lint project template path
  */
-function getTemplatePath(): ReturnType<typeof helper.withResultWarp> {
-  return helper.withResultWarp((resolve) => {
+function getTemplatePath(): ReturnType<typeof helper.resultPromiseWrap> {
+  return helper.resultPromiseWrap((resolve) => {
     try {
       resolve({
         reason: null,

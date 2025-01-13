@@ -25,7 +25,7 @@ interface IPromiseWithResolvers<T> {
 /**
  * @description 统一处理回调结果
  */
-const withResultWarp = (
+const resultPromiseWrap = (
   fn: (resolve: PromiseResolver) => void
 ): Promise<IPromiseResult> => {
   const { promise, resolve } =
@@ -37,7 +37,7 @@ const withResultWarp = (
     resolve({
       reason:
         `${fn.name} call err:${JSON.stringify(error)}` ||
-        `withResultWarp call ${fn} error`,
+        `resultPromiseWrap call ${fn} error`,
       status: false,
     });
   }
@@ -46,7 +46,7 @@ const withResultWarp = (
 };
 
 const helper = {
-  withResultWarp,
+  resultPromiseWrap,
 };
 
 export default helper;
