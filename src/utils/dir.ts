@@ -59,10 +59,11 @@ async function isLibraryListedInPackageJson(moduleName: string) {
 
 async function getModuleIsInstalled(moduleName: string) {
   moduleName = moduleName.trim();
-
   try {
     // find cjs package has vaild main field
-    require.resolve(moduleName);
+    require.resolve(moduleName, {
+      paths: [process.cwd()],
+    });
     return true;
   } catch (error) {
     // find all deps from package.json

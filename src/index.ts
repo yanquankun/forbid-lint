@@ -1,5 +1,5 @@
-import check from "./lib/check";
 import inquirer from "./lib/inquirer";
+import "./utils/ora";
+import "./utils/catch";
 
-// check();
 inquirer();
