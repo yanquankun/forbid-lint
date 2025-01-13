@@ -11,8 +11,8 @@ const isFileExit = (path: string) => {
 const ensureDir = (
   path: string,
   cb?: () => void
-): ReturnType<typeof helper.resultPromiseWrap> => {
-  return helper.resultPromiseWrap((resolve) => {
+): ReturnType<typeof helper.withResultWarp> => {
+  return helper.withResultWarp((resolve) => {
     if (!path) {
       log.error(`path 参数：${path} 非法`, "ensureDir");
       resolve({ reason: `path 参数：${path} 非法`, status: false });
