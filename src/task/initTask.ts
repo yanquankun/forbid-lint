@@ -12,6 +12,11 @@ export const initTask = async ({ force = false }: IInitTaskOptions) => {
   const isInstallHusky = await dirHelper.getModuleIsInstalled("husky");
   spinner.stop();
   if (!isInstallHusky) {
-    await huskyTask();
+    await huskyTask.huskyPrompt();
+  } else {
+    await huskyTask.initHuskyConfig(true);
   }
+
+  // 校验.frobidrc.json
+  spinner.start("正在检测项目是否配置 .forbidrc.json文件...");
 };

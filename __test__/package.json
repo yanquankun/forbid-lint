@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "pnpm i file:../ -D"
+    "install": "pnpm i file:../ -D",
+    "prepare": "(husky install 2>/dev/null ||:) && mkdir -p .husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "forbid-lint": "file:..",
+    "husky": "^9.1.7",
     "loadsh": "^0.0.4"
   }
 }

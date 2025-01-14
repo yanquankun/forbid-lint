@@ -4,7 +4,7 @@ interface IPromiseResult {
   reason: string | null;
   status: boolean;
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  data?: unknown;
+  data?: any;
 }
 
 /**
