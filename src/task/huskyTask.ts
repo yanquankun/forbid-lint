@@ -7,10 +7,7 @@ import ejs from "ejs";
 import fs from "fs-extra";
 import fileHelper from "../utils/file";
 import path from "path";
-
-interface IPromptThenable {
-  (value: unknown): void | PromiseLike<void>;
-}
+import { IPromptThenable } from "./types";
 
 const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
   spinner.start("正在生成 husky 配置文件...");
@@ -103,7 +100,7 @@ const huskyPrompt = () => {
       {
         type: "confirm",
         name: "installHusky",
-        message: "检测到项目未安装husky，是否安装 husky?",
+        message: log.chalk.blue.bold("检测到项目未安装husky，是否安装 husky?"),
         initial: true,
       },
     ])

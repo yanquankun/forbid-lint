@@ -1,3 +1,4 @@
+import { ta } from "element-plus/es/locales.mjs";
 import ora from "ora";
 import type { Ora } from "ora";
 

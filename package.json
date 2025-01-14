@@ -11,7 +11,7 @@
     "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
     "build": "tsc && gulp",
     "gulp": "gulp",
-    "test": "sh test-install.sh && gulp && tsc -w && nodemon --watch src --ext ts"
+    "test": "tsc -w & pnpm gulp && nodemon --watch src --ext ts --exec sh test-install.sh"
   },
   "files": [
     "dist",
