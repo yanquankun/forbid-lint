@@ -12,6 +12,6 @@ export const initTask = async ({ force = false }: IInitTaskOptions) => {
   const isInstallHusky = await dirHelper.getModuleIsInstalled("husky");
   spinner.stop();
   if (!isInstallHusky) {
-    huskyTask();
+    await huskyTask();
   }
 };

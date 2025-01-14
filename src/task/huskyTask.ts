@@ -11,7 +11,7 @@ interface IPromptThenable {
 const initHuskyConfig = () => {};
 
 const huskyTask = () => {
-  enquirer
+  return enquirer
     .prompt([
       {
         type: "confirm",

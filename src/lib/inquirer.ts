@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import log from "../utils/log";
 import { initTask } from "../task/initTask";
+import checkTask from "../task/checkTask";
 
 export default function () {
   const pkg = fs.readFileSync(path.join(__dirname, "../../package.json"), {
@@ -29,6 +30,13 @@ export default function () {
         force: name.force,
       });
     });
+
+  program
+    .command("check")
+    .description(
+      log.chalk.bgBlueBright.black("检测当前工程是否有禁止修改 lint 文件的配置")
+    )
+    .action(checkTask);
 
   program.on("command:*", ([cmd]) => {
     log.warn(` ${log.chalk.red(`${cmd} 命令不存在，请检查命令是否正确`)}`);
