@@ -22,14 +22,20 @@ const huskyPrompt = () => {
         initial: true,
       },
     ])
-    .then((({ installHusky }) => {
+    .then((async ({ installHusky }) => {
       if (installHusky) {
         try {
           spinner.start("正在安装 husky...");
+
+          const packageManager = await dirHelper.getPkgManage();
           // TODO: 包管理方式修改
-          const result = execa.sync("pnpm", ["install", "-D", "husky"], {
-            cwd: process.cwd(),
-          });
+          const result = execa.sync(
+            packageManager,
+            ["install", "-D", "husky"],
+            {
+              cwd: process.cwd(),
+            }
+          );
           if (result.exitCode === 0) {
             spinner.succeed(log.chalk.green.bold("husky安装成功"));
           }

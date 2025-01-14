@@ -1,6 +1,7 @@
 import path from "path";
 import helper from "./helper";
 import fs from "fs-extra";
+import fileHelper from "./file";
 
 /**
  * @description 获取项目根目录
@@ -17,7 +18,7 @@ async function getProjectRoot(target: string = "package.json") {
     const projectRoot = path.dirname(packageJsonPath);
     return projectRoot;
   } else {
-    return null;
+    return "";
   }
 }
 
@@ -73,10 +74,29 @@ async function getModuleIsInstalled(moduleName: string) {
   }
 }
 
+const getPkgManage = async () => {
+  const pkgRoot = await getProjectRoot();
+
+  let pkgManage: "npm" | "yarn" | "pnpm" = "npm";
+
+  if (fileHelper.isFileExit(path.join(pkgRoot, "package.json"))) {
+    pkgManage = "npm";
+  }
+  if (fileHelper.isFileExit(path.join(pkgRoot, "yarn.lock"))) {
+    pkgManage = "yarn";
+  }
+  if (fileHelper.isFileExit(path.join(pkgRoot, "pnpm-lock.yaml"))) {
+    pkgManage = "pnpm";
+  }
+
+  return pkgManage;
+};
+
 const dirHelper = {
   getProjectRoot,
   getTemplatePath,
   getModuleIsInstalled,
+  getPkgManage,
 };
 
 export default dirHelper;
