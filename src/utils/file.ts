@@ -8,13 +8,13 @@ const isFileExit = (path: string) => {
   return fs.existsSync(path);
 };
 
-const ensureDir = (
+const ensurePathFile = (
   path: string,
   cb?: () => void
 ): ReturnType<typeof helper.withResultWarp> => {
   return helper.withResultWarp((resolve) => {
     if (!path) {
-      log.error(`path 参数：${path} 非法`, "ensureDir");
+      log.error(`path 参数：${path} 非法`, "ensurePathFile");
       resolve({ reason: `path 参数：${path} 非法`, status: false });
     }
 
@@ -26,7 +26,7 @@ const ensureDir = (
         status: true,
       });
     } catch (error) {
-      log.error(JSON.stringify(error), "ensureDir");
+      log.error(JSON.stringify(error), "ensurePathFile");
       resolve({
         reason: JSON.stringify(error),
         status: false,
@@ -37,7 +37,7 @@ const ensureDir = (
 
 const fileHelper = {
   isFileExit,
-  ensureDir,
+  ensurePathFile,
 };
 
 export default fileHelper;
