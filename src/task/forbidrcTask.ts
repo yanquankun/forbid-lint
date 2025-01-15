@@ -6,7 +6,6 @@ import fileHelper from "../utils/file";
 import enquirer from "enquirer";
 import { IPromptThenable } from "./types";
 import fs from "fs-extra";
-import ejs from "ejs";
 
 const createForbidrcJson = async () => {
   spinner.start("正在生成.forbidrc.json文件...");

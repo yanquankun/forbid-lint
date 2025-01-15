@@ -3,7 +3,6 @@ import spinner from "../utils/ora";
 import log from "../utils/log";
 import execa from "execa";
 import dirHelper from "../utils/dir";
-import ejs from "ejs";
 import fs from "fs-extra";
 import fileHelper from "../utils/file";
 import path from "path";
@@ -25,7 +24,7 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
   const packageRoot = await dirHelper.getProjectRoot();
 
   // 生成 husky 配置文件
-  const preCommitPath = path.join(packageRoot, "/.husky/");
+  const packageHuskyPath = path.join(packageRoot, "/.husky/");
 
   const huskyTplPath = path.join(templatePath, "/husky_tpl/");
 
@@ -33,10 +32,22 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
     // has install husky
     // The pre-commit file is configured by default
     try {
-      const preCommitStr = fs.readFileSync(
-        path.join(preCommitPath, "pre-commit"),
-        "utf-8"
-      );
+      const packagePreCommitPath = path.join(packageHuskyPath, "pre-commit");
+
+      // if pre-commit file does not exist
+      if (!fileHelper.isFileExit(packagePreCommitPath)) {
+        console.log();
+        log.warn(
+          "检测到项目中husky没有配置pre-commit文件，将自动创建",
+          "initHuskyConfig"
+        );
+        fs.writeFileSync(packagePreCommitPath, "npx forbid-lint check");
+        spinner.succeed(log.chalk.green.bold("创建pre-commit文件成功"));
+        return;
+      }
+
+      // else if pre-commit file exists & has been configured forbid lint script
+      const preCommitStr = fs.readFileSync(packagePreCommitPath, "utf-8");
       if (preCommitStr.includes("npx forbid-lint check")) {
         spinner.succeed(
           log.chalk.green(
@@ -45,8 +56,10 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
         );
         return;
       }
+
+      // else
       fs.writeFileSync(
-        path.join(preCommitPath, "pre-commit"),
+        path.join(packageHuskyPath, "pre-commit"),
         preCommitStr + "\n" + "npx forbid-lint check"
       );
       spinner.succeed(log.chalk.green.bold("husky 配置文件生成完成"));
@@ -58,9 +71,10 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
     }
   } else {
     try {
-      fs.removeSync(preCommitPath);
+      fs.removeSync(packageHuskyPath);
 
       const huskyTplMap = await fileHelper.getFileMapByPath(huskyTplPath);
+
       huskyTplMap.forEach((name) => {
         const filePath = path.join(packageRoot, name);
         fs.ensureDirSync(path.dirname(filePath));
