@@ -1,7 +1,31 @@
 import { execSync } from "child_process";
+import fileHelper from "../utils/file";
+import dirHelper from "../utils/dir";
+import path from "path";
+import fs from "fs-extra";
+import log from "../utils/log";
+import spinner from "../utils/ora";
+import { json } from "stream/consumers";
 
-export default function () {
+// 需要检查的文件类型
+let forbidFiles = [
+  ".eslintrc.js",
+  ".eslintrc.cjs",
+  ".eslintrc.yaml",
+  ".eslintrc.yml",
+  ".eslintrc.json",
+  "eslint.config.js",
+  "eslint.config.mjs",
+  "eslint.config.cjs",
+  "eslint.config.ts",
+  "eslint.config.mts",
+  "eslint.config.cts",
+];
+
+export default async function () {
   try {
+    spinner.start("检查是否包含禁止修改的文件...");
+
     // 获取本次提交的文件
     const stagedFiles = execSync("git status --porcelain | awk '{print $2}'", {
       encoding: "utf-8",
@@ -9,35 +33,33 @@ export default function () {
       .split("\n")
       .filter(Boolean);
 
-    // 需要检查的文件类型
-    const eslintFiles = [
-      ".eslintrc.js",
-      ".eslintrc.cjs",
-      ".eslintrc.yaml",
-      ".eslintrc.yml",
-      ".eslintrc.json",
-      "eslint.config.js",
-      "eslint.config.mjs",
-      "eslint.config.cjs",
-      "eslint.config.ts",
-      "eslint.config.mts",
-      "eslint.config.cts",
-    ];
+    const packageRoot = await dirHelper.getProjectRoot();
+    const forbidrcPath = path.join(packageRoot, "/.forbidrc.json");
 
-    // 判断是否包含非法修改
-    console.log("stagedFiles", stagedFiles);
-    const hasEslintChanges = stagedFiles.some((file) =>
-      eslintFiles.includes(file)
-    );
-
-    if (hasEslintChanges) {
-      console.error("❌ 禁止提交：ESLint 配置文件被修改！");
-      process.exit(1); // 阻止提交
+    if (fileHelper.isFileExit(forbidrcPath)) {
+      const { lintFiles } = JSON.parse(fs.readFileSync(forbidrcPath, "utf-8"));
+      forbidFiles = lintFiles;
     }
 
-    console.log("✅ 检查通过，可以提交。");
+    const cantCommitFiles = stagedFiles
+      .map((file) =>
+        forbidFiles.filter((forbidFile) => file.endsWith(forbidFile))
+      )
+      .flat();
+
+    if (cantCommitFiles?.length) {
+      spinner.fail(
+        log.chalk.red.bold(
+          `禁止提交：\n${cantCommitFiles.join("\n")}\n 配置文件被修改，请检查!`
+        )
+      );
+      process.exit(1);
+    }
+
+    spinner.succeed("检查通过，可以提交");
   } catch (error) {
-    console.error("❌ 检查过程出错：", error);
-    process.exit(1); // 阻止提交
+    spinner.fail(`检查过程出错：${JSON.stringify(error)}`);
+  } finally {
+    spinner.stop();
   }
 }
