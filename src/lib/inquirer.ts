@@ -34,7 +34,7 @@ export default function () {
   program
     .command("check")
     .description(
-      log.chalk.bgBlueBright.black("检测当前工程是否有禁止修改 lint 文件的配置")
+      log.chalk.bgBlueBright.black("检测当前工程是否有禁止修改的文件进行了修改")
     )
     .action(checkTask);
 

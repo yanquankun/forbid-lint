@@ -112,14 +112,14 @@ const huskyPrompt = () => {
           const packageManager = await dirHelper.getPkgManage();
           const result = execa.sync(
             packageManager,
-            ["install", "-D", "husky"],
+            ["install", "-D", "husky@9.1.7"],
             {
               cwd: process.cwd(),
             }
           );
           if (result.exitCode === 0) {
             spinner.succeed(log.chalk.green.bold("husky安装成功"));
-            initHuskyConfig();
+            await initHuskyConfig();
           }
         } catch (error: Error | unknown) {
           spinner.fail(log.chalk.red.bold("husky安装失败"));
