@@ -28,13 +28,22 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
 
   const huskyTplPath = path.join(templatePath, "/husky_tpl/");
 
+  // has install husky
   if (hasInstallHusky) {
-    // has install husky
     // The pre-commit file is configured by default
     try {
+      // if .husky folder does not exist
+      if (!fs.existsSync(packageHuskyPath)) {
+        spinner.stop();
+        log.error(
+          "检测到项目中没有.husky文件夹，建议卸载husky后重新执行forbid-lint init指令"
+        );
+        process.exit(0);
+      }
+
+      // else if pre-commit file does not exist
       const packagePreCommitPath = path.join(packageHuskyPath, "pre-commit");
 
-      // if pre-commit file does not exist
       if (!fileHelper.isFileExit(packagePreCommitPath)) {
         console.log();
         log.warn(
@@ -75,11 +84,14 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
 
       const huskyTplMap = await fileHelper.getFileMapByPath(huskyTplPath);
 
-      huskyTplMap.forEach((name) => {
+      huskyTplMap.forEach(async (name) => {
         const filePath = path.join(packageRoot, name);
         fs.ensureDirSync(path.dirname(filePath));
         /* eslint-disable @typescript-eslint/no-explicit-any */
         fs.writeFileSync(filePath, (huskyTplMap as any)[name] || "");
+
+        // 增加每个文件的可执行权限
+        await execa("chmod", ["+x", filePath]);
       });
 
       spinner.succeed(log.chalk.green.bold("husky 配置文件生成完成"));
