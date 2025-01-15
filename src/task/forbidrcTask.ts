@@ -27,7 +27,7 @@ const createForbidrcJson = async () => {
   const forbidrcDir = path.join(packageRoot, "/.forbidrc.json");
 
   fs.writeFileSync(forbidrcDir, forbidrcStr);
-  spinner.succeed("初始化.forbidrc.json文件成功");
+  spinner.succeed(log.chalk.green.bold("初始化.forbidrc.json文件成功"));
 };
 
 const forbidrcTaskPrompt = () => {
