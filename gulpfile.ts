@@ -4,7 +4,7 @@ import terser from "gulp-terser";
 
 gulp.task("minify", () => {
   return gulp
-    .src(["dist/**/*.js", "!dist/template/**/*"], { dot: true })
+    .src(["dist/**/*.js", "!dist/template/**/*"])
     .pipe(terser())
     .pipe(gulp.dest("dist/"));
 });
