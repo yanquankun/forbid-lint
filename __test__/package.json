@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "forbid-lint": "file:..",
-    "husky": "^9.1.7",
+    "husky": "9.1.7",
     "loadsh": "^0.0.4"
   }
 }

@@ -27,6 +27,8 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
   // 生成 husky 配置文件
   const preCommitPath = path.join(packageRoot, "/.husky/");
 
+  const huskyTplPath = path.join(templatePath, "/husky_tpl/");
+
   if (hasInstallHusky) {
     // has install husky
     // The pre-commit file is configured by default
@@ -37,7 +39,9 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
       );
       if (preCommitStr.includes("npx forbid-lint check")) {
         spinner.succeed(
-          log.chalk.green("husky has been configured，continue...")
+          log.chalk.green(
+            "husky pre-commit frobid-lint has been configured，continue..."
+          )
         );
         return;
       }
@@ -53,25 +57,24 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
       );
     }
   } else {
-    const ejsTpl = fs.readFileSync(
-      path.join(templatePath, ".husky/pre-commit"),
-      "utf-8"
-    );
-    const huskyTplStr = ejs.render(ejsTpl);
+    try {
+      fs.removeSync(preCommitPath);
 
-    fileHelper.ensurePathFile(preCommitPath).then((res) => {
-      if (!res.status) {
-        log.error(res.reason as string, "ensurePathFile");
-        spinner.fail(
-          log.chalk.red.bold(
-            "husky 配置文件生成失败，请手动创建 husky 配置文件"
-          )
-        );
-        return;
-      }
-      fs.writeFileSync(path.join(preCommitPath, "pre-commit"), huskyTplStr);
+      const huskyTplMap = await fileHelper.getFileMapByPath(huskyTplPath);
+      huskyTplMap.forEach((name) => {
+        const filePath = path.join(packageRoot, name);
+        fs.ensureDirSync(path.dirname(filePath));
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        fs.writeFileSync(filePath, (huskyTplMap as any)[name] || "");
+      });
+
       spinner.succeed(log.chalk.green.bold("husky 配置文件生成完成"));
-    });
+    } catch (e) {
+      log.error(JSON.stringify(e), "ensurePathFile");
+      spinner.fail(
+        log.chalk.red.bold("husky 配置文件生成失败，请手动创建 husky 配置文件")
+      );
+    }
   }
 
   // 补充package.json 中的 husky 配置
