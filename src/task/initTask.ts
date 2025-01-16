@@ -1,5 +1,5 @@
-import dirHelper from "../utils/dir";
-import spinner from "../utils/ora";
+import dirHelper from "@/utils/dir";
+import spinner from "@/utils/ora";
 import huskyTask from "./huskyTask";
 import initForbidrcJson from "./forbidrcTask";
 

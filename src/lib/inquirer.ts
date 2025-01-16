@@ -1,9 +1,9 @@
 import program from "commander";
 import fs from "fs";
 import path from "path";
-import log from "../utils/log";
-import { initTask } from "../task/initTask";
-import checkTask from "../task/checkTask";
+import log from "@/utils/log";
+import { initTask } from "@/task/initTask";
+import checkTask from "@/task/checkTask";
 
 export default function () {
   const pkg = fs.readFileSync(path.join(__dirname, "../../package.json"), {

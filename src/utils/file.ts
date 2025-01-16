@@ -5,7 +5,6 @@ import helper from "./helper";
 import globby from "globby";
 import ejs from "ejs";
 import { Options as ejsOptions } from "ejs";
-import { fi } from "element-plus/es/locales.mjs";
 
 const isFileExit = (path: string) => {
   if (!path) return false;

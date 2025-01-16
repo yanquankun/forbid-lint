@@ -1,11 +1,10 @@
 import { execSync } from "child_process";
-import fileHelper from "../utils/file";
-import dirHelper from "../utils/dir";
+import fileHelper from "@/utils/file";
+import dirHelper from "@/utils/dir";
 import path from "path";
 import fs from "fs-extra";
-import log from "../utils/log";
-import spinner from "../utils/ora";
-import { json } from "stream/consumers";
+import log from "@/utils/log";
+import spinner from "@/utils/ora";
 
 // 需要检查的文件类型
 let forbidFiles = [

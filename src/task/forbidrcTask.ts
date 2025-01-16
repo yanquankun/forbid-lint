@@ -1,8 +1,8 @@
-import spinner from "../utils/ora";
-import dirHelper from "../utils/dir";
+import spinner from "@/utils/ora";
+import dirHelper from "@/utils/dir";
 import path from "path";
-import log from "../utils/log";
-import fileHelper from "../utils/file";
+import log from "@/utils/log";
+import fileHelper from "@/utils/file";
 import enquirer from "enquirer";
 import { IPromptThenable } from "./types";
 import fs from "fs-extra";
