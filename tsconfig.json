@@ -22,7 +22,8 @@
     /** alisa */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "plugins": [{ "transform": "typescript-transform-paths" }]
   },

@@ -1,7 +1,7 @@
 import program from "commander";
 import fs from "fs";
 import path from "path";
-import log from "@/utils/log";
+import log from "@utils/log";
 import { initTask } from "@/task/initTask";
 import checkTask from "@/task/checkTask";
 
