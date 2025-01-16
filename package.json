@@ -8,16 +8,17 @@
   },
   "scripts": {
     "eslint": "eslint src --ext .ts",
-    "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
-    "build": "tsc && gulp",
+    "dev": "nodemon --watch src --ext ts --exec \"ts-node -r tsconfig-paths/register src/index.ts\"",
+    "build": "rimraf dist && tsc && tsc-alias && pnpm gulp",
     "gulp": "gulp",
-    "test": "pnpm concurrently 'tsc -w' 'pnpm gulp || exit 1 && nodemon --watch src --ext ts --exec sh test-install.sh'"
+    "test": "pnpm concurrently 'pnpm build' 'nodemon --watch src --ext ts --exec \"pnpm build && sh test-install.sh\"'"
   },
   "files": [
     "dist",
     "README",
     "CHANGELOG",
-    "LICENSE"
+    "LICENSE",
+    "tsconfig.json"
   ],
   "repository": {
     "type": "git",
@@ -47,7 +48,7 @@
     "@types/gulp": "^4.0.17",
     "@types/gulp-copy": "^0.0.7",
     "@types/gulp-terser": "^1.2.6",
-    "@types/node": "^22.10.2",
+    "@types/node": "^18.19.71",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "concurrently": "^9.1.2",
     "eslint": "^8.57.1",
@@ -55,8 +56,9 @@
     "gulp-copy": "^5.0.0",
     "gulp-terser": "^2.1.0",
     "nodemon": "^3.1.9",
-    "parser^6.4.1": "link:@typescript-eslint/parser^6.4.1",
-    "ts-node": "^10.9.2"
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10"
   },
   "dependencies": {
     "chalk": "4.1.2",
@@ -71,6 +73,7 @@
     "ora": "5.3.0",
     "promise.withresolvers": "^1.0.3",
     "strip-ansi": "6",
+    "tsconfig-paths": "^4.2.0",
     "tslib": "^2.8.1"
   }
 }
