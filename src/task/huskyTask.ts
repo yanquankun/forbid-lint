@@ -110,7 +110,7 @@ const initHuskyConfig = async (hasInstallHusky: boolean = false) => {
       const packageJsonPath = path.join(packageRoot, "/package.json");
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
       packageJson.scripts.prepare =
-        "(husky install 2>/dev/null ||:) && mkdir -p .husky";
+        "mkdir -p .husky";
       fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
       spinner.succeed(
         log.chalk.green.bold("补充 package.json 中的 husky 配置完成")
