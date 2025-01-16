@@ -129,5 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-__test__/forbid-lint
-__test__/node_modules
+demo/forbid-lint
+demo/node_modules

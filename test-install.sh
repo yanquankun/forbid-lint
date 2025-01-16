@@ -1,2 +1,2 @@
-cd __test__
+cd demo
 pnpm run install
