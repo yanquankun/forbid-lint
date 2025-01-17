@@ -1,25 +1,54 @@
 # forbid-lint
 
-一个用于前端工程中禁止修改 lint 文件的插件
+一个用于前端工程中禁止修改 lint 文件的插件，由于本插件目的是避免各种 lint 文件的修改，所以目前只支持配置项目根目录的配置文件名，后续会支持配置子级文件名~
 
 ### 使用插件
 
 1. 安装
 
-```shell
-
-```
-
-2. 生成`.forbidrc.json`文件，当然，你也可以不创建该文件，那么将会按步骤三的配置进行校验
+全局安装
 
 ```shell
-# 方式一
-xxx
-# 方式二
-手动在项目根目录中创建.forbidrc.json文件，并写入
+npm install forbid-lint -g
+or
+pnpm install forbid-lint -g
+or
+yarn add forbid-lint -g
 ```
 
-3. 配置`.forbidrc.json`文件，该文件中 lintFiles 列表中的文件禁止修改，如果文件配置为空或者没有该文件，会按照如下列表中进行默认配置
+项目内安装
+
+```shell
+npm install forbid-lint -D
+or
+pnpm install forbid-lint -D
+or
+yarn add forbid-lint -D
+```
+
+2. 使用
+
+`有两种使用方式，先介绍第一种：`
+
+---
+
+**手动创建配置文件方式**
+
+1. 在项目的根目录创建`.forbidrc.json`文件，写入如下配置
+
+```json
+// 将不希望被修改的文件名写入到lintFiles中
+{
+  "lintFiles": [
+    ".eslintrc.js",
+    ".eslintrc.json",
+    ".eslintrc.yml",
+    xxx
+  ]
+}
+```
+
+TIP：如果不创建该文件，将以如下默认配置的文件名进行校验
 
 ```md
 # 默认禁止修改文件
@@ -37,26 +66,45 @@ eslint.config.mts
 eslint.config.cts
 ```
 
-```json
-// .forbidrc.json
-{
-  "lintFiles": [".eslintrc.js", ".eslintrc.json", ".eslintrc.yml", ...] // 该配置中的所有文件禁止被修改
-}
-```
-
-4. 生成 githooks 文件
-
-````shell
-# 方式一
-在项目根目录中手动创建如下路径文件.git/hooks/pre-commit文件，
-# 方式二
-xxx
-
-5. 配置`pre-commit`内容
+2. 安装 husky 并配置 husky 的`pre-commit`钩子，安装配置 husky 比较简单，可自行参考[husky guide](https://typicode.github.io/husky/)，在 pre-commitgound 钩子中添加如下内容
 
 ```shell
-xxx
+npx forbid-lint check
 ```
+
+3. git 提交时，将在 pre-commit 钩子中执行 forbid-lint check 命令，如果检测到有文件被修改，则提示不允许修改，并退出 git 提交流程
+
+---
+
+### cli 使用
+
+**cli 命令介绍**
+
+![forbid-lint cli](https://www.yanquankun.cn/cdn/forbid-lint-cli.png)
+
+1. forbid-lint init 进行初始化
+
+2. forbid-lint check 检测暂存区是否存在禁止修改的文件
+
+---
+
+**cli 创建配置文件方式**
+
+1. 运行如下 cli 命令进行初始化
+
+```shell
+# 全局安装运行
+forbid-lint init
+
+# 项目内安装运行
+npx forbid-lint init
+```
+
+2.  根据 cli 工具的提示选择是否自动生成如下配置
+
+        2.1 husky：自动安装husky插件，自动创建.husky目录，自动生成pre-commit钩子，并自动配置该钩子为forbid-lint check 【也可以选择拒绝自动安装，选择自己安装husky】
+
+        2.2 .frobidrc.json：自动在项目根目录生成.forbidrc.json文件，并写入如下内容{"lintFiles": [".eslintrc.js", ".eslintrc.json", ".eslintrc.yml"]}
 
 ---
 
@@ -82,7 +130,6 @@ pnpm test
 ```shell
 pnpm build
 ```
-````
 
 ---
 
