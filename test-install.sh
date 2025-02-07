@@ -1,2 +1,3 @@
 cd demo
-pnpm run install
+rm -rf node_modules
+pnpm install
