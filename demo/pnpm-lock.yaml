@@ -8,9 +8,12 @@ importers:
 
   .:
     devDependencies:
-      forbid-lint:
+      '@vexjs/forbid-lint':
         specifier: file:..
         version: file:..
+      forbid-lint:
+        specifier: file:..
+        version: '@vexjs/forbid-lint@file:..'
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -31,6 +34,11 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@vexjs/forbid-lint@file:..':
+    resolution: {directory: .., type: directory}
+    engines: {node: '>= 14.0.0'}
+    hasBin: true
 
   ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
@@ -225,11 +233,6 @@ packages:
 
   for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
-
-  forbid-lint@file:..:
-    resolution: {directory: .., type: directory}
-    engines: {node: '>= 14.0.0'}
-    hasBin: true
 
   fs-extra@11.2.0:
     resolution: {integrity: sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==}
@@ -762,6 +765,23 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.18.0
 
+  '@vexjs/forbid-lint@file:..':
+    dependencies:
+      chalk: 4.1.2
+      commander: 7.1.0
+      core-js: 3.40.0
+      ejs: 3.1.10
+      enquirer: 2.4.1
+      execa: 4.1.0
+      find-up: 7.0.0
+      fs-extra: 11.2.0
+      globby: 11.0.2
+      ora: 5.3.0
+      promise.withresolvers: 1.0.3
+      strip-ansi: 6.0.1
+      tsconfig-paths: 4.2.0
+      tslib: 2.8.1
+
   ansi-colors@4.1.3: {}
 
   ansi-regex@5.0.1: {}
@@ -1042,23 +1062,6 @@ snapshots:
   for-each@0.3.3:
     dependencies:
       is-callable: 1.2.7
-
-  forbid-lint@file:..:
-    dependencies:
-      chalk: 4.1.2
-      commander: 7.1.0
-      core-js: 3.40.0
-      ejs: 3.1.10
-      enquirer: 2.4.1
-      execa: 4.1.0
-      find-up: 7.0.0
-      fs-extra: 11.2.0
-      globby: 11.0.2
-      ora: 5.3.0
-      promise.withresolvers: 1.0.3
-      strip-ansi: 6.0.1
-      tsconfig-paths: 4.2.0
-      tslib: 2.8.1
 
   fs-extra@11.2.0:
     dependencies:
