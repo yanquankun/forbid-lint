@@ -1,32 +1,5 @@
 {
-  "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */
-    /** 启用增量编译 */
-    "incremental": true,
-    "allowJs": true,
-    "target": "ESNext",
-    "module": "NodeNext", // 由于项目中某些dep是esm，所以不要使用commonjs，否则无法解析esm模块
-    "declaration": true,
-    "sourceMap": false,
-    "outDir": "dist",
-    "importHelpers": true,
-    "strict": true,
-    "lib": ["esnext.promise"],
-    /** commonjs support import */
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    /* Skip type checking all .d.ts files. */
-    "skipLibCheck": true,
-    "removeComments": true,
-    "typeRoots": ["./node_modules/@types", "./src/**/*.d.ts"],
-    /** alisa */
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@utils/*": ["./src/utils/*"]
-    },
-    "plugins": [{ "transform": "typescript-transform-paths" }]
-  },
+  "extends": "./tsconfig.base.json",
   "include": ["src/**/*.ts", "__tests__/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

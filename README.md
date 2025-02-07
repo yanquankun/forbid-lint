@@ -102,7 +102,7 @@ npx forbid-lint init
 
 2.  根据 cli 工具的提示选择是否自动生成如下配置
 
-        2.1 husky：自动安装husky插件，自动创建.husky目录，自动生成pre-commit钩子，并自动配置该钩子为forbid-lint check 【也可以选择拒绝自动安装，选择自己安装husky】
+        2.1 husky：自动安装husky（9.1.7）插件，自动创建.husky目录，自动生成pre-commit钩子，并自动配置该钩子为forbid-lint check 【也可以选择拒绝自动安装，选择自己安装husky】
 
         2.2 .frobidrc.json：自动在项目根目录生成.forbidrc.json文件，并写入如下内容{"lintFiles": [".eslintrc.js", ".eslintrc.json", ".eslintrc.yml"]}
 
