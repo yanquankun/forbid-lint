@@ -12,7 +12,8 @@
     "build": "rimraf dist && tsc -p tsconfig.prod.json && tsc-alias && pnpm gulp",
     "gulp": "gulp",
     "test": "pnpm concurrently 'pnpm build' 'nodemon --watch src --ext ts --exec \"pnpm build && sh test-install.sh\"'",
-    "jest": "jest --config=jest.config.ts"
+    "jest": "jest --config=jest.config.ts",
+    "publish": "tsx scripts/publishCI.ts"
   },
   "files": [
     "dist",
@@ -50,6 +51,7 @@
     "@types/gulp-terser": "^1.2.6",
     "@types/jest": "^29.5.14",
     "@types/node": "^18.19.71",
+    "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "concurrently": "^9.1.2",
     "eslint": "^8.57.1",
@@ -57,8 +59,10 @@
     "gulp-copy": "^5.0.0",
     "gulp-terser": "^2.1.0",
     "jest": "^29.7.0",
+    "mri": "^1.2.0",
     "nodemon": "^3.1.9",
     "rimraf": "^6.0.1",
+    "semver": "^7.6.3",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10"
