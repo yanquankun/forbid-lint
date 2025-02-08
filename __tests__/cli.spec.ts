@@ -41,6 +41,7 @@ beforeAll(() => {
   resetDemoProject();
 });
 
+//====== base test case ======
 test("run forbid-lint --version should equal package version", () => {
   const { stdout } = run(["npx forbid-lint", "--version"]);
   expect(stdout).toBe(version);
@@ -70,3 +71,4 @@ test("run forbid-lint check --help should show check help message with -h alisa"
   const { stdout } = run(["npx forbid-lint", "check", "-h"]);
   expect(stdout).toContain("Usage: forbid-lint check [options]");
 });
+//====== 测试区域结束 ======
