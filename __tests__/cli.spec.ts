@@ -7,7 +7,11 @@ const DEMO_PATH = path.resolve(__dirname, "../demo");
 const demoPkg = JSON.parse(
   fs.readFileSync(path.resolve(DEMO_PATH, "package.json"), "utf-8")
 );
-const version = demoPkg.version || "0.0.0";
+const cliPkg = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "../package.json"), "utf-8")
+);
+const version = cliPkg.version || "0.0.0";
+const installHuskyVersion = "9.1.7";
 
 const run = (args: string[], options?: SyncOptions): ExecaSyncReturnValue => {
   return commandSync(`${args.join(" ")}`, {
@@ -139,8 +143,8 @@ describe("function test case", () => {
     expect(bol).toBeTruthy();
   });
 
-  test("cli install husky version should be 9.1.7", () => {
-    expect(demoPkg.devDependencies["husky"]).toEqual("9.1.7");
+  test(`cli install husky version should be ${installHuskyVersion}`, () => {
+    expect(demoPkg.devDependencies["husky"]).toEqual(installHuskyVersion);
   });
 
   test.todo(
