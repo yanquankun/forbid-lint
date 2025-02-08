@@ -137,6 +137,12 @@ pnpm build
 pnpm jest
 ```
 
+### 发布
+
+```shell
+pnpm publish
+```
+
 ---
 
 ### 整体流程图
