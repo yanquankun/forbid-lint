@@ -123,7 +123,7 @@ pnpm test
 ```
 
 1. 监听 src 中 ts 文件修改
-2. 为**test**目录动态更新 forbid-lint 库
+2. 为**demo**目录动态更新 forbid-lint 库
 
 ### 打包
 
