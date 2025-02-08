@@ -131,6 +131,12 @@ pnpm test
 pnpm build
 ```
 
+### 单元测试
+
+```shell
+pnpm jest
+```
+
 ---
 
 ### 整体流程图
