@@ -5,7 +5,7 @@ import {
   getPackageInfo,
   publishPackage,
   step,
-} from "./utils.ts";
+} from "./utils";
 import type { publish as def } from "./types.d.ts";
 
 export const publish: typeof def = async ({

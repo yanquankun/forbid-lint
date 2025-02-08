@@ -13,7 +13,7 @@
     "gulp": "gulp",
     "test": "pnpm concurrently 'pnpm build' 'nodemon --watch src --ext ts --exec \"pnpm build && sh test-install.sh\"'",
     "jest": "jest --config=jest.config.ts",
-    "publishCI": "tsx scripts/publishCI.ts"
+    "publishCI": "ts-node scripts/publishCI.ts"
   },
   "files": [
     "dist",
