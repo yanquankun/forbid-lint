@@ -1,6 +1,6 @@
 {
   "name": "@vexjs/forbid-lint",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "一个用于前端工程中禁止修改lint文件的插件",
   "main": "dist/index.js",
   "bin": {
