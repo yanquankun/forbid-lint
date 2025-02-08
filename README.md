@@ -140,7 +140,7 @@ pnpm jest
 ### 发布
 
 ```shell
-pnpm publish [x.y.z]
+pnpm publishCI [x.y.z]
 ```
 
 ---
