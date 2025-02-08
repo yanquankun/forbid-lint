@@ -12,7 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "@vexjs/forbid-lint": "file:..",
-    "husky": "9.1.7",
     "loadsh": "^0.0.4"
   }
 }
