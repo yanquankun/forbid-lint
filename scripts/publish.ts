@@ -7,6 +7,8 @@ import {
   step,
 } from "./utils";
 import type { publish as def } from "./types.d.ts";
+import execa from "execa";
+import path from "path";
 
 export const publish: typeof def = async ({
   defaultPackage,
@@ -30,6 +32,9 @@ export const publish: typeof def = async ({
     throw new Error(
       `Package version from tag "${version}" mismatches with current version "${pkg.version}"`
     );
+
+  step("Building package...");
+  await execa("pnpm", ["build"], { cwd: path.resolve(__dirname, "../") });
 
   const activeVersion = await getActiveVersion(pkg.name);
 
