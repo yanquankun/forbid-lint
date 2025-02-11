@@ -16,7 +16,7 @@ or
 yarn add forbid-lint -g
 ```
 
-项目内安装
+项目内安装（建议采用这种方式）
 
 ```shell
 npm install forbid-lint -D
@@ -85,6 +85,12 @@ npx forbid-lint check
 1. forbid-lint init 进行初始化
 
 2. forbid-lint check 检测暂存区是否存在禁止修改的文件
+
+`TIP: 如何在运行cli指令时提示sh: xxx/bin/forbid-lint: Permission denied，可运行如下指令进行修复：`
+
+```shell
+chmod +x xxx/forbid-lint/bin/forbid-lint
+```
 
 ---
 

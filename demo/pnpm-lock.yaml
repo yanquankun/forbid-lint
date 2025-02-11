@@ -34,7 +34,7 @@ packages:
 
   '@vexjs/forbid-lint@file:..':
     resolution: {directory: .., type: directory}
-    engines: {node: '>= 14.0.0'}
+    engines: {node: '>= 14.0.0', npm: use-pnpm-please}
     hasBin: true
 
   ansi-colors@4.1.3:
