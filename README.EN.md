@@ -11,21 +11,21 @@ A plugin for frontend projects to prevent modifications to lint files. Since the
 Global Installation
 
 ```shell
-npm install forbid-lint -g
+npm install @vexjs/forbid-lint -g
 or
-pnpm install forbid-lint -g
+pnpm install @vexjs/forbid-lint -g
 or
-yarn add forbid-lint -g
+yarn add @vexjs/forbid-lint -g
 ````
 
 Project Installation (Recommended)
 
 ```shell
-npm install forbid-lint -D
+npm install @vexjs/forbid-lint -D
 or
-pnpm install forbid-lint -D
+pnpm install @vexjs/forbid-lint -D
 or
-yarn add forbid-lint -D
+yarn add @vexjs/forbid-lint -D
 ```
 
 2. Usage
